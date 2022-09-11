@@ -1,0 +1,125 @@
+{% load static %}
+
+<head>
+    {% include 'gentannieApp/dash/dash_head.html' %}
+    <title>gentannie | dashboard~transact_history</title>
+</head>
+<body class="bg-gray-900">
+    <!-- sidebar -->
+    {% include 'gentannieApp/dash/dash_side.html' %}
+    <!-- sidebar ends -->
+    <div class="md:ml-60 ">
+        <!-- topnav -->
+        {% include 'gentannieApp/dash/dash_topnav.html' %}
+        <!-- / .topnav -->
+
+        <div class="-mt-8 md:mr-">
+            <div class="grid-cols-12 px-4 py-10 mt-10 md:p-3 sm:px-10" id="main_content">
+                <div class="lg:px-10">
+                    <div class="py-5 mt-10 text-lg text-white md:text-2xl">
+                        Transaction History
+                        {{ withdraw.user }}
+                    </div>
+                    <div class="text-white text-md">
+                        Deposit_History
+                    </div>
+                    <div class="mt-3 bg-gray-800 border-t border-green-400 rounded-lg shadow-2xl py-">
+                        <div class="overflow-x-auto text-sm text-gray-200">
+                                <div class="grid grid-cols-12 gap-10 px-10 py-3 border-b">
+                                    <div class="col-span-2">
+                                        S/N
+                                    </div>
+                                    <div class="col-span-2">
+                                        Amount
+                                    </div>
+                                    {% comment %} <div class="col-span-2">
+                                        wallet_Address
+                                    </div> {% endcomment %}
+                                    <div class="col-span-2 ml-20">
+                                        Status
+                                    </div>
+                                    <div class="col-span-2 ml-20">
+                                        Package
+                                    </div>
+                                    <div class="col-span-2 ml-32">
+                                        Date_filled
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-12 gap-10 px-10 py-4">
+                                    <div class="col-span-2">
+                                        *
+                                    </div>
+                                {% for record in user_history %}
+                                    <div class="w-32 col-span-2">
+                                        &#8358 {{ record.amount_deposited }}
+                                    </div>
+                                    <div class="w-20 col-span-2 ml-10 ">
+                                        <div class="p-1 bg-blue-600 rounded-full">
+                                            {{ record.deposit_status }}
+                                        </div>
+                                    </div>
+                                    <div class="w-48 col-span-2 ml-20 ">
+                                        {{ record.package }}( {{ record.plan }} )
+                                    </div>
+                                    <div class="w-32 col-span-4 ml-32">
+                                        {{ record.date_created }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% comment %} <div class="mt-10 text-white text-md">
+                        Withdrawal_History
+                    </div> {% endcomment %}
+                    {% comment %} <div class="bg-gray-800 border-t border-green-400 rounded-lg shadow-2xl py-">
+                        <div class="overflow-x-auto text-sm text-gray-200">
+                                <div class="grid grid-cols-12 gap-10 px-10 py-3 border-b">
+                                    <div class="col-span-2">
+                                        S/N
+                                    </div>
+                                    <div class="col-span-2">
+                                        Amount
+                                    </div>
+                                    {% comment %} <div class="col-span-2">
+                                        wallet_Address
+                                    </div> {% endcomment %}
+                                    {% comment %} <div class="col-span-2 ml-20">
+                                        Status
+                                    </div>
+                                    <div class="col-span-2 ml-20">
+                                        Package
+                                    </div>
+                                    <div class="col-span-2 ml-32">
+                                        Date_filled
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-12 gap-10 px-10 py-4">
+                                    <div class="col-span-2">
+                                        *
+                                    </div>
+                                {% for record in user_history %}
+                                    <div class="col-span-2">
+                                        &#8358 {{ record.amount_deposited |add:record.count }}
+                                    </div>
+                                    <div class="w-20 col-span-2 ml-10 ">
+                                        <div class="p-1 bg-blue-600 rounded-full">
+                                            {{ record.deposit_status }}
+                                        </div>
+                                    </div>
+                                    <div class="w-48 col-span-2 ml-20 ">
+                                        {{ record.package }}( {{ record.plan }} )
+                                    </div>
+                                    <div class="col-span-2 ml-32">
+                                        {{ record.created_date }}
+                                    </div>
+                                </div>
+                            {% endfor %} {% endcomment %}
+                        {% comment %} </div> {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %} "></script>
+</body>
+</html>

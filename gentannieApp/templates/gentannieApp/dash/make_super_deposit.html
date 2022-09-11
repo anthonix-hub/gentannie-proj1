@@ -1,0 +1,144 @@
+{% load static %}
+{% load tailwind_filters %}
+
+<head>
+    {% include 'gentannieApp/dash/dash_head.html' %}
+    <title>make_deposit | dashboard~deposit_page</title>
+</head>
+<body class="bg-gray-900">
+    <!-- sidebar -->
+    {% include 'gentannieApp/dash/dash_side.html' %}
+    <!-- sidebar ends -->
+    <div class="md:ml-60 ">
+        <!-- topnav -->
+        {% include 'gentannieApp/dash/dash_topnav.html' %}
+        <!-- / .topnav -->
+
+        <div class="flex grid-cols-12">
+            <div class="px-4 py-10 mt-10 md:p-3 sm:px-10" id="main_content">
+                <div class="">
+                    <div class="py-5 text-lg text-white md:text-2xl ">
+                        <div class="flex items-center gap-2">
+                            <img src=" {% static 'img/dash_icons/add_new_50px.png' %} " alt="" class="h-6">
+                            Deposit section
+                        </div>
+                    </div>
+                    <div class="grid gap-4 lg:grid-cols-12 md:gap-2">
+                        <div class="px-6 py-6 mx-auto text-lg text-red-500 bg-gray-800 rounded-lg lg:col-span-3 lg:h-64 xl:col-span-5 md:text-sm lg:h-full xl:py-32">
+                            <div class="text-lg">
+                                Send payment proof of the plan paid for and wait to be verified. 
+                            </div>
+                            {% comment %} <hr class="mt-4 bg-red-400" style=""> {% endcomment %}
+                            {% comment %} <div class='mt-5 text-lg'>
+                                Bank: First Bank <br>
+                                Account Name: Sylvester Omoregie <br>
+                                Account Number: 3062253652 <br>
+                            </div> {% endcomment %}
+                        </div>
+                        <div class="bg-gray-800 rounded-lg lg:col-span-9 xl:col-span-7">
+                            <div class="px-5 py-1 bg-gray-400 shadow-md sm:px-16 lg:px-5">
+                               <div class="mt-10 text-white">
+                               <form method= POST enctype='multipart/form-data' action=''>{% csrf_token %}
+                                    {% comment %} {{ packform|crispy }} {% endcomment %}
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-5/6 rounded-l-2xl">
+                                            {{ packform.plan_name |as_crispy_field }}
+                                        </div>
+                                        <div class="w-3/5">
+                                            <label class="text-xs text-gray-800 md:text-sm">Reselect&nbspplan&nbspto&nbspcomfirm&nbspAmount</label>
+                                            <select id="Planselector" class="w-full px-5 py-2 text-lg text-black rounded-r-lg outline-none">
+                                                {% for object in packform.plan_name %}
+                                                    <option value="" class="">{{object}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="px-6 py-2 mt-5 text-black bg-gray-200 pb-3x rounded-2xl">
+                                        <div id="basic" class="colors" style="display:none">Amount &#8358 20,000</div>
+                                        <div id="standard" class="colors" style="display:none">Amount &#8358 40,000</div>
+                                        <div id="premium" class="colors" style="display:none">Amount &#8358 60,000</div>
+                                        <div id="bronze" class="colors" style="display:none">Amount &#8358 80,000</div>
+                                        <div id="super_bronze" class="colors" style="display:none">Amount &#8358 100,000</div>
+                                        <div id="silver" class="colors" style="display:none">Amount &#8358 120,000</div>
+                                        <div id="super_silver" class="colors" style="display:none">Amount &#8358 140,000</div>
+                                        <div id="Gold" class="colors" style="display:none">Amount &#8358 200,000</div>
+                                        <div id="diamond" class="colors" style="display:none">Amount &#8358 400,000</div>
+                                        <div id="Ruby" class="colors" style="display:none">Amount &#8358 600,000</div>
+                                        <div id="peal" class="colors" style="display:none">Amount &#8358 700,000</div>
+                                        <div id="emerald" class="colors" style="display:none">Amount &#8358 800,000</div>
+                                        <div id="Jasper" class="colors" style="display:none">Amount &#8358 900,000</div>
+                                    </div>
+                                    <div>
+                                        {{ packform.account_type |as_crispy_field }}
+                                    </div>
+                                    <div>
+                                        {{ packform.payment_proof |as_crispy_field }}
+                                    </div>
+                                    
+                                    <button type="submit" class="px-10 py-1 mt-3 bg-blue-500 rounded-full shadow-lg hover:shadow-2xl hover:bg-blue-600">
+                                    submit 
+                                    </button>
+                                </form>
+                                    {% comment %} <form method="post" enctype='multipart/form-data' class="" >
+                                        {% csrf_token %}
+                                        <div id="Planselector">
+                                            {{ packform.plan_name |as_crispy_field }}
+                                            <select id="Planselector" class="w-full px-5 py-2 text-lg text-black outline-none rounded-2xl"> {% endcomment %}
+                                            {% comment %} {{ packform.plan_name |as_crispy_field }} {% endcomment %}
+                                                {% comment %} {% for object in packform.plan_name %}
+                                                    <option value="" class="">{{object}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            {{ packform.account_type |as_crispy_field }}
+                                        </div>
+                                        <div>
+                                            {{ packform.payment_proof |as_crispy_field }}
+                                        </div> {% endcomment %}
+                                        {% comment %} {{ packform|crispy }} {% endcomment %}
+
+                                        
+                                        {% comment %} <label class="text-lg">{{packform.plan_name.label}}</label>
+                                        <select id="Planselector" class="w-full px-5 py-2 text-lg text-black outline-none rounded-2xl">
+                                            {% for object in packform.plan_name %}
+                                                <option value="" class="">{{object}}</option>
+                                            {% endfor %}
+                                        </select> {% endcomment %}
+
+                                        {% comment %} <div class="mt-5 ">
+                                            <label class="text-lg">{{packform.account_type.label}}</label>
+                                            <select class="w-full px-5 py-2 text-lg text-black outline-none rounded-2xl">
+                                            {% for type in packform.account_type %}
+                                                <option>{{type}}</option>
+                                            {% endfor %}
+                                             </select>
+                                        </div>
+                                        <div class="w-48 mt-5 bg-red-300 outline-none ">
+                                            {{packform.payment_proof}}
+                                        </div> {% endcomment %}
+
+                                        {% comment %} <button type="submit" class="px-10 py-1 mt-3 bg-blue-500 rounded-full shadow-lg hover:shadow-2xl hover:bg-blue-600">
+                                           submit 
+                                        </button>
+                                    </form> {% endcomment %}
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %} "></script>   
+    <script src="{% static 'js/jquery.min.js' %} "></script> 
+    <script> 
+    $(function() {
+        $('#Planselector').change(function(){
+            $('.colors').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+    </script>
+</body>
+</html>
